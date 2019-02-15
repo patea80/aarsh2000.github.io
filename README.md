@@ -6,7 +6,7 @@ The following contains
   - 5.5 File Type Count, outputs the count of all HTML, JavaScript, CSS, Python, Haskell and Bash Script files
 ### Usage
 SSH into the mac1xa3 server 
-```sh $ cd home/patea80/CS1XA3/Project01``` 
+``` $ cd home/patea80/CS1XA3/Project01``` 
 ```sh $ ./project_analyze.sh ``` 
 The script will 
 prompt you to select the following options, 
