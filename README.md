@@ -7,7 +7,7 @@ The following contains
 ### Usage
 SSH into the mac1xa3 server 
 ```sh $ cd home/patea80/CS1XA3/Project01``` 
-```sh$ ./project_analyze.sh ``` 
+```sh $ ./project_analyze.sh ``` 
 The script will 
 prompt you to select the following options, 
 ```sh Press 0 to exit Press 5.2 to run script Create a TODO Log ``` 
