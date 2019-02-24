@@ -44,7 +44,8 @@ date,open,high,low,close,volume,unadjustedVolume,change,changePercent,vwap,label
 
 Current msft stock price:
 Sun Feb 24 06:43:13 UTC 2019
-110.97  ```  
+110.97 
+```  
 
 To exit back to the menu, enter 0 when prompted  
   
