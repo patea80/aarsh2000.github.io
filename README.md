@@ -3,7 +3,7 @@
 Bash and Git
 # Features!
 The following contains
-  - 5.0 Stock Quote Fetcher, fetches real time data on price, date, open, high, low, close, volume and much more on American listed stocks
+  - 5.0 Stock Quote Fetcher (custom feature), fetches real time data on price, date, open, high, low, close, volume and much more on American listed stocks
   - 5.2 Create a TODO Log, finds line of every file with the tag #TODO and records it into todo.log
   - 5.5 File Type Count, outputs the count of all HTML, JavaScript, CSS, Python, Haskell and Bash Script files
 ### Usage
