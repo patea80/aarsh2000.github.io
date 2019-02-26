@@ -70,10 +70,14 @@ you can view output of all compile errors by,
 
 ``` $ cat compile_fail.log ```
 
+``` Done. ```
+
 ### 5.5 File Type Count
 After entering '5.5' as prompted, the file count should be displayed, something like this
 
 ``` Running script 5.5 File Type Count in CS1XA3 directory... ```
 
-``` HTML: 1 , JavaScript: 0, Python: 2, Haskell: 0, Bashscript: 1 Done. ```
+``` HTML: 1 , JavaScript: 0, Python: 2, Haskell: 0, Bashscript: 1 ```
+
+``` Done. ```
 
