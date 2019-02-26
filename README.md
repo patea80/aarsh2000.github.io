@@ -32,8 +32,9 @@ After entering '5.0' as prompted,
 
 ``` Running script 5.0 Stock Quote Fetcher... ```
 
-``` Enter stock ticker to find real time information on stock or enter 0 to exit back to the menu ``` Enter an
-American listed stock (NASDAQ, NYSE), for example 'msft' represents Microsoft Corporation 
+``` Enter stock ticker to find real time information on stock or enter 0 to exit back to the menu ``` 
+
+Enter an American listed stock (NASDAQ, NYSE), for example 'msft' represents Microsoft Corporation 
 
 ``` >msft ``` 
 
