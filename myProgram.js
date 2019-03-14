@@ -5,7 +5,8 @@ var nums =200;
 var noiseScale = 800;
 
 function setup(){
-	createCanvas(windowWidth, windowHeight);
+	var canvas = createCanvas(windowWidth, windowHeight);
+	canvas.parent('rolypoly');
 	background(21, 8, 50);
 	for(var i = 0; i < nums; i++){
 		particles_a[i] = new Particle(random(0, width),random(0,height));
