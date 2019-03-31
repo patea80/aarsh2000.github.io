@@ -19,6 +19,12 @@ let up = false;
 let down = false;
 let left = false;
 let right = false;
+let shoot = false;
+let shootup = false;
+let shootdown = false;
+let shootleft = false;
+let shootright = false;
+
 
 let animate = true;
 
@@ -28,6 +34,8 @@ let yCord =[];
 
 //this array stores the object:square to record the spawned squares
 let array = [];
+
+
 
 //IGNORE THIS CODE 
     // c.beginPath();
@@ -85,7 +93,66 @@ function square( x, y, size, dx, dy){
         this.x+= this.dx;
         this.y+=this.dy;
 
+        if(shootup == true){
+            for(let i = 0; i<array.length; i++){
+                sq = array[i]
+    
+                    if(sq.y <= player.y){
+                        if(sq.x-1<=player.x && (sq.x+sq.size+1)>=player.x){ 
+                            console.log("hit")
+                            array.splice(i,1);
+                        }
+                    }
+                shootup = false;
+            
+                } 
+        }
 
+        if(shootdown == true){
+            for(let i = 0; i<array.length; i++){
+                sq = array[i]
+    
+                    if(sq.y >= player.y){
+                        if(sq.x-1<=player.x && (sq.x+sq.size+1)>=player.x){ 
+                            console.log("hit")
+                            array.splice(i,1);
+                        }
+                    }
+                shootdown = false;
+            
+                } 
+        }
+
+        if(shootleft == true){
+            for(let i = 0; i<array.length; i++){
+                sq = array[i]
+    
+                    if(sq.x <= player.x){
+                        if(sq.y-1<=player.y && (sq.y+sq.size+1)>=player.y){ 
+                            console.log("hit")
+                            array.splice(i,1);
+                        }
+                    }
+                shootleft = false;
+            
+                } 
+        }
+
+        if(shootright == true){
+            for(let i = 0; i<array.length; i++){
+                sq = array[i]
+    
+                    if(sq.x >= player.x){
+                        if(sq.y-1<=player.y && (sq.y+sq.size+1)>=player.y){ 
+                            console.log("hit")
+                            array.splice(i,1);
+                        }
+                    }
+                shootright = false;
+            
+                } 
+        }
+        
         //records perimeter value of square
         this.determineAllPointsForSquare();
         
@@ -97,7 +164,6 @@ function square( x, y, size, dx, dy){
         //refer to function determineAllPoints() to see how x and y position of circle is obtained
         for(let i = 0; i < xCord.length; i+=3){
             for(let j = 0; j < this.xCordSquare.length; j++){
-                
                 //compares x position
                 if(xCord[i] == this.xCordSquare[j]){
                     x = true;
@@ -106,8 +172,8 @@ function square( x, y, size, dx, dy){
                 //compares y position
                 if( yCord[i] == this.yCordSquare[j]){
                     y = true;
-                }
-
+                }  
+   
                 //checks to see if x and y are in the same position, and if so then stops the game
                 if(x == true && y == true){
                     document.querySelector('.hide').style.display = 'flex';
@@ -129,8 +195,8 @@ function square( x, y, size, dx, dy){
 function determineAllPoints(){
     for(let i = 0; i < 361; i++){
 
-        xCord[i] = Math.round((25 * Math.sin(i*((Math.PI)/180))) +player.x);
-        yCord[i] = Math.round((25 * Math.cos(i*((Math.PI)/180))) + player.y);
+        xCord[i] = Math.round((25 * Math.cos(i*((Math.PI)/180))) +player.x);
+        yCord[i] = Math.round((25 * Math.sin(i*((Math.PI)/180))) + player.y);
 
     }
 }
@@ -147,7 +213,6 @@ function circle(x,y,radius, walk){
 
     //the go function animates the circle object
     this.go = function (){
-
         //c.blah blah is for drawing the circle from arc
         c.beginPath();
         c.strokeStyle = "green";
@@ -162,15 +227,51 @@ function circle(x,y,radius, walk){
         //the 37 condition checks to see if center of circle is 37 pixels from given border
             if(up == true && this.y >=37){
                 this.y -= walk;
+                if(shoot == true){
+                        c.beginPath();
+                        c.moveTo(this.x,this.y);
+                        c.lineTo(this.x,0);
+                        c.strokeStyle = "black";
+                        c.stroke();
+                    shoot = false;
+
+                }
             }
             if(down == true && this.y <= (innerHeight-37)){
                 this.y += walk;
+                if(shoot == true){
+                    c.beginPath();
+                    c.moveTo(this.x,this.y);
+                    c.lineTo(this.x,innerHeight);
+                    c.strokeStyle = "black";
+                    c.stroke();
+                shoot = false;
+
+                }
             }
             if( left == true && this.x >= 37){
                 this.x -= walk;
+                if(shoot == true){
+                    c.beginPath();
+                    c.moveTo(this.x,this.y);
+                    c.lineTo(0,this.y);
+                    c.strokeStyle = "black";
+                    c.stroke();
+                shoot = false;
+
+                }
             }
             if( right == true && this.x <= (innerWidth-37)){
                 this.x += walk;
+                if(shoot == true){
+                    c.beginPath();
+                    c.moveTo(this.x,this.y);
+                    c.lineTo(innerWidth,this.y);
+                    c.strokeStyle = "black";
+                    c.stroke();
+                shoot = false;
+
+                }
             }
 
 
@@ -296,6 +397,26 @@ function removeSquares(){
             down=false;
             left=false;
             up = false;  
+        }
+
+    });
+
+    window.addEventListener ('keypress', function(event)
+    { 
+        if(event.keyCode == 32){
+            shoot = true;
+            if(up == true){
+                shootup = true;
+            }
+            if(down == true){
+                shootdown = true;
+            }
+            if(left == true){
+                shootleft = true;
+            }
+            if(right == true){
+                shootright = true;
+            }
         }
 
     });
