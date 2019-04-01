@@ -2,6 +2,7 @@
  * This program runs a simple simulation.
  * Welcome to world where it is not okay to be a circle!
  * 
+ * @author Aarsh Patel
  */
 
 //canvas and c let me interact with the webpage, the variable connects to the HTML page protectCircle.html
@@ -93,6 +94,8 @@ function square( x, y, size, dx, dy){
         this.x+= this.dx;
         this.y+=this.dy;
 
+        //shooting mechanic
+        //checks direction, and checks if any sqaure is in x and y interval of bullet line
         if(shootup == true){
             for(let i = 0; i<array.length; i++){
                 sq = array[i]
@@ -225,13 +228,14 @@ function circle(x,y,radius, walk){
         //please be aware the the 37 represents a number that is optomized for radius of 30 
         //the number 37 can be replaced with [RADIUS+7] for better programming practice
         //the 37 condition checks to see if center of circle is 37 pixels from given border
+        //draws a line for the bullet in terms of direction 
             if(up == true && this.y >=37){
                 this.y -= walk;
                 if(shoot == true){
                         c.beginPath();
                         c.moveTo(this.x,this.y);
                         c.lineTo(this.x,0);
-                        c.strokeStyle = "black";
+                        c.strokeStyle = "orange";
                         c.stroke();
                     shoot = false;
 
@@ -243,7 +247,7 @@ function circle(x,y,radius, walk){
                     c.beginPath();
                     c.moveTo(this.x,this.y);
                     c.lineTo(this.x,innerHeight);
-                    c.strokeStyle = "black";
+                    c.strokeStyle = "orange";
                     c.stroke();
                 shoot = false;
 
@@ -255,7 +259,7 @@ function circle(x,y,radius, walk){
                     c.beginPath();
                     c.moveTo(this.x,this.y);
                     c.lineTo(0,this.y);
-                    c.strokeStyle = "black";
+                    c.strokeStyle = "orange";
                     c.stroke();
                 shoot = false;
 
@@ -267,7 +271,7 @@ function circle(x,y,radius, walk){
                     c.beginPath();
                     c.moveTo(this.x,this.y);
                     c.lineTo(innerWidth,this.y);
-                    c.strokeStyle = "black";
+                    c.strokeStyle = "orange";
                     c.stroke();
                 shoot = false;
 
@@ -470,7 +474,7 @@ function move(){
     
     //this displays the score on the canvas
     c.font = '150pt Tahoma';
-    c.strokeStyle = '#004966';
+    c.strokeStyle = 'blue';
     c.strokeText(" "+score,innerWidth/2 -110,innerHeight/2-200);
 
     
