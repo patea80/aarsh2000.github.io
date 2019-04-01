@@ -17,6 +17,12 @@ canvas.height = window.innerHeight;
 canvisSize = canvas.width*canvas.height;
 circleRadius = Math.round(Math.sqrt((canvisSize * (2827.43/3343113))/Math.PI)); //area at 0.08454% of total pixels
 squareSize = Math.round(Math.sqrt(canvisSize * (3600/3343113))); //area at 0.10768% of total pixels
+console.log(canvisSize)
+speed = Math.round(canvisSize*(5/3343113));
+console.log(Math.round(canvisSize*(5/3343113)))
+if(speed<=1){
+    speed = 1.1
+}
 
 //this variable records the score
 let score = 0;
@@ -234,7 +240,7 @@ function circle(x,y,radius, walk){
         //the number 37 can be replaced with [RADIUS+7] for better programming practice
         //the 37 condition checks to see if center of circle is 37 pixels from given border
         //draws a line for the bullet in terms of direction 
-            if(up == true && this.y >=37){
+            if(up == true && this.y >=circleRadius){
                 this.y -= walk;
                 if(shoot == true){
                         c.beginPath();
@@ -246,7 +252,7 @@ function circle(x,y,radius, walk){
 
                 }
             }
-            if(down == true && this.y <= (innerHeight-37)){
+            if(down == true && this.y <= (innerHeight-circleRadius)){
                 this.y += walk;
                 if(shoot == true){
                     c.beginPath();
@@ -258,7 +264,7 @@ function circle(x,y,radius, walk){
 
                 }
             }
-            if( left == true && this.x >= 37){
+            if( left == true && this.x >= circleRadius){
                 this.x -= walk;
                 if(shoot == true){
                     c.beginPath();
@@ -270,7 +276,7 @@ function circle(x,y,radius, walk){
 
                 }
             }
-            if( right == true && this.x <= (innerWidth-37)){
+            if( right == true && this.x <= (innerWidth-circleRadius)){
                 this.x += walk;
                 if(shoot == true){
                     c.beginPath();
@@ -290,7 +296,7 @@ function circle(x,y,radius, walk){
 }
 
 //creates one new player, the option to create more than one player is available for future expansion
-let player = new circle(innerWidth/2 +30,innerHeight/2,circleRadius,10);
+let player = new circle(innerWidth/2 +30,innerHeight/2,circleRadius,speed*2);
 
 
 
@@ -335,10 +341,10 @@ function addSquare(){
 
     //uses random function to assign random speed of square, the while function ensures that the speed is not 0
     while(dx==0){
-        dx = (Math.round((Math.random()-0.5)*5));
+        dx = (Math.round((Math.random()-0.5)*speed));
     }
     while (dy==0){
-        dy = dx = (Math.round((Math.random()-0.5)*5));
+        dy = dx = (Math.round((Math.random()-0.5)*speed));
     }
    
     //sometimes the square spawn on the border, this insures that it spawns INSIDE the border/canvas
@@ -418,7 +424,7 @@ function removeSquares(){
     let touchendY = 0;
     
     const limit = Math.tan(45 * 1.5 / 180 * Math.PI);
-    const gestureZone = document.getElementById('modalContent');
+    //const gestureZone = document.getElementById('modalContent');
     
     window.addEventListener('touchstart', function(event) {
         touchstartX = event.changedTouches[0].screenX;
@@ -550,7 +556,7 @@ function move(){
     //this displays the score on the canvas
     c.font = '150pt Tahoma';
     c.strokeStyle = 'blue';
-    c.strokeText(" "+score,innerWidth/2 -110,innerHeight/2-200);
+    c.strokeText(" "+score,innerWidth/2 -110,innerHeight/2);
 
     
 
