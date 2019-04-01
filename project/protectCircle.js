@@ -17,11 +17,9 @@ canvas.height = window.innerHeight;
 canvisSize = canvas.width*canvas.height;
 circleRadius = Math.round(Math.sqrt((canvisSize * (2827.43/3343113))/Math.PI)); //area at 0.08454% of total pixels
 squareSize = Math.round(Math.sqrt(canvisSize * (3600/3343113))); //area at 0.10768% of total pixels
-console.log(canvisSize)
 speed = Math.round(canvisSize*(5/3343113));
-console.log(Math.round(canvisSize*(5/3343113)))
 if(speed<=1){
-    speed = 1.1
+    speed = 1.1;
 }
 
 //this variable records the score
