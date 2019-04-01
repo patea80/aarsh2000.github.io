@@ -13,9 +13,11 @@ let c = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-screenSize = canvas.width*canvas.height;
-circleRadius = canvisSize * (2827.43/3343113)
-squareSize = canvisSize * (3600/3343113)
+//I set a predefined size for circle and square such that sizes are propotional at different screens and resolutions 
+canvisSize = canvas.width*canvas.height;
+circleRadius = Math.round(Math.sqrt((canvisSize * (2827.43/3343113))/Math.PI)); //area at 0.08454% of total pixels
+squareSize = Math.round(Math.sqrt(canvisSize * (3600/3343113))); //area at 0.10768% of total pixels
+
 //this variable records the score
 let score = 0;
 //these variables record the direction in which the circle is traveling
@@ -201,8 +203,8 @@ function square( x, y, size, dx, dy){
 function determineAllPoints(){
     for(let i = 0; i < 361; i++){
 
-        xCord[i] = Math.round((25 * Math.cos(i*((Math.PI)/180))) +player.x);
-        yCord[i] = Math.round((25 * Math.sin(i*((Math.PI)/180))) + player.y);
+        xCord[i] = Math.round((circleRadius * Math.cos(i*((Math.PI)/180))) +player.x);
+        yCord[i] = Math.round((circleRadius * Math.sin(i*((Math.PI)/180))) + player.y);
 
     }
 }
