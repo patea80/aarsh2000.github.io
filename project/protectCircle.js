@@ -17,9 +17,11 @@ canvas.height = window.innerHeight;
 canvisSize = canvas.width*canvas.height;
 circleRadius = Math.round(Math.sqrt((canvisSize * (2827.43/3343113))/Math.PI)); //area at 0.08454% of total pixels
 squareSize = Math.round(Math.sqrt(canvisSize * (3600/3343113))); //area at 0.10768% of total pixels
-speed = canvisSize*(5/3343113);
+speed = canvisSize*(5/3343113); //speed of circle and squares relative to screen size and resolution
+
+//minimum speed required must be 1.1 
 if(speed<=1){
-    speed = 1.1;
+    speed = 1.1; 
 }
 
 //this variable records the score
@@ -105,6 +107,7 @@ function square( x, y, size, dx, dy){
 
         //shooting mechanic
         //checks direction, and checks if any sqaure is in x and y interval of bullet line
+        //for shooting upwards
         if(shootup == true){
             for(let i = 0; i<array.length; i++){
                 sq = array[i]
@@ -119,7 +122,7 @@ function square( x, y, size, dx, dy){
             
                 } 
         }
-
+        //for shooting downwards
         if(shootdown == true){
             for(let i = 0; i<array.length; i++){
                 sq = array[i]
@@ -134,7 +137,7 @@ function square( x, y, size, dx, dy){
             
                 } 
         }
-
+        //for shooting left
         if(shootleft == true){
             for(let i = 0; i<array.length; i++){
                 sq = array[i]
@@ -149,7 +152,7 @@ function square( x, y, size, dx, dy){
             
                 } 
         }
-
+        //for shooting right
         if(shootright == true){
             for(let i = 0; i<array.length; i++){
                 sq = array[i]
@@ -234,7 +237,7 @@ function circle(x,y,radius, walk){
         c.stroke();
 
         //this controls the circle from key inputs and changes direction of circle with help of boolean
-        //checks to see if center of circle is 37 pixels from given border
+        //checks to see if center of circle is radius length away from given border
         //draws a line for the bullet in terms of direction 
             if(up == true && this.y >=circleRadius){
                 this.y -= walk;
@@ -358,7 +361,7 @@ function addSquare(){
     //tracks how many squares are present in the array/screen for score keeping
     score++;
 
-    //updates high score locally on browser
+    //updates high score locally on browser 
     if(score>=localStorage.getItem('highScore')){
         let store = score.toString();
         localStorage.setItem("highScore", store);
@@ -412,6 +415,8 @@ function removeSquares(){
 
     });
 
+    //************************Touch Gesture Support from Import **********************************/
+    //https://gist.github.com/SleepWalker/da5636b1abcbaff48c4d
     let pageWidth = window.innerWidth || document.body.clientWidth;
     let treshold = Math.max(1,Math.floor(0.01 * (pageWidth)));
     let touchstartX = 0;
@@ -420,7 +425,7 @@ function removeSquares(){
     let touchendY = 0;
     
     const limit = Math.tan(45 * 1.5 / 180 * Math.PI);
-    //const gestureZone = document.getElementById('modalContent');
+
     
     window.addEventListener('touchstart', function(event) {
         touchstartX = event.changedTouches[0].screenX;
@@ -481,7 +486,9 @@ function removeSquares(){
             }
         }
     }
+    /*******************************************************************************/
 
+//when space bar is pressed, shoot is activated
     window.addEventListener ('keypress', function(event)
     { 
         if(event.keyCode == 32){
