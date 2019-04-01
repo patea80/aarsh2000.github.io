@@ -13,6 +13,9 @@ let c = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+screenSize = canvas.width*canvas.height;
+circleRadius = canvisSize * (2827.43/3343113)
+squareSize = canvisSize * (3600/3343113)
 //this variable records the score
 let score = 0;
 //these variables record the direction in which the circle is traveling
@@ -285,7 +288,7 @@ function circle(x,y,radius, walk){
 }
 
 //creates one new player, the option to create more than one player is available for future expansion
-let player = new circle(innerWidth/2 +30,innerHeight/2,30,10);
+let player = new circle(innerWidth/2 +30,innerHeight/2,circleRadius,10);
 
 
 
@@ -296,7 +299,7 @@ function addSquare(){
   
     //go see object: square
     let x = 0;
-    let size = 60;
+    let size = squareSize;
     let dx = 0;
     let dy = 0;
 
