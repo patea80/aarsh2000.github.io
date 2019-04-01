@@ -17,7 +17,7 @@ canvas.height = window.innerHeight;
 canvisSize = canvas.width*canvas.height;
 circleRadius = Math.round(Math.sqrt((canvisSize * (2827.43/3343113))/Math.PI)); //area at 0.08454% of total pixels
 squareSize = Math.round(Math.sqrt(canvisSize * (3600/3343113))); //area at 0.10768% of total pixels
-speed = Math.round(canvisSize*(5/3343113));
+speed = canvisSize*(5/3343113);
 if(speed<=1){
     speed = 1.1;
 }
@@ -234,9 +234,7 @@ function circle(x,y,radius, walk){
         c.stroke();
 
         //this controls the circle from key inputs and changes direction of circle with help of boolean
-        //please be aware the the 37 represents a number that is optomized for radius of 30 
-        //the number 37 can be replaced with [RADIUS+7] for better programming practice
-        //the 37 condition checks to see if center of circle is 37 pixels from given border
+        //checks to see if center of circle is 37 pixels from given border
         //draws a line for the bullet in terms of direction 
             if(up == true && this.y >=circleRadius){
                 this.y -= walk;
